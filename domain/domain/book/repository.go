@@ -87,7 +87,7 @@ func (r BookRepository) Search(term string) []Book {
 // List returns all books in the bookshelf.
 func (r BookRepository) List() []Book {
 	var books []Book
-	r.db.Preload(clause.Associations).Find(&books)
+	r.db.Find(&books)
 	return books
 }
 
