@@ -1,35 +1,29 @@
 package book
 
 import (
-	"encoding/csv"
-	"os"
 	"strconv"
 )
 
-func readFromCsv(filename string) ([]Book, error) {
-	f, err := os.Open(filename)
+func cellToBook(line []string) (Book, error) {
+	name := line[0]
+	stockCode := line[1]
+	authorId, err := strconv.Atoi(line[2])
 	if err != nil {
-		return nil, err
-	}
-	defer f.Close()
-
-	reader := csv.NewReader(f)
-	reader.Comma = ';'
-	lines, err := reader.ReadAll()
-	if err != nil {
-		return nil, err
+		return Book{}, err
 	}
 
+	data, err := Construct(name, stockCode, authorId)
+	if err != nil {
+		return Book{}, err
+	}
+
+	return data, nil
+}
+
+func cellsToBook(lines [][]string) ([]Book, error) {
 	var result []Book
 	for _, line := range lines[1:] {
-		name := line[0]
-		stockCode := line[1]
-		authorId, err := strconv.Atoi(line[2])
-		if err != nil {
-			return nil, err
-		}
-
-		data, err := Construct(name, stockCode, authorId)
+		data, err := cellToBook(line)
 		if err != nil {
 			return nil, err
 		}

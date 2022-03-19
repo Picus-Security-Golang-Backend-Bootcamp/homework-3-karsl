@@ -1,10 +1,12 @@
 package data
 
 import (
+	"encoding/csv"
 	"fmt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
+	"os"
 	"time"
 )
 
@@ -26,4 +28,21 @@ func NewPostgresDB() *gorm.DB {
 	}
 
 	return db
+}
+
+func GetCellsFromCSV(filename string) ([][]string, error) {
+	f, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	reader := csv.NewReader(f)
+	reader.Comma = ';'
+	lines, err := reader.ReadAll()
+	if err != nil {
+		return nil, err
+	}
+
+	return lines, nil
 }

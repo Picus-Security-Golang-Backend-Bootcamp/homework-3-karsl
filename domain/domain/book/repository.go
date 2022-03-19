@@ -3,6 +3,7 @@ package book
 import (
 	"errors"
 	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/helper"
+	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/infrastructure/data"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"strings"
@@ -27,9 +28,14 @@ func (r BookRepository) Migration() error {
 
 // InsertSampleData reads data from book.csv and writes them to table book
 func (r BookRepository) InsertSampleData() error {
-	books, err := readFromCsv("book.csv")
+	lines, err := data.GetCellsFromCSV("book.csv")
 	if err != nil {
 		return err
+	}
+
+	books, err := cellsToBook(lines)
+	if err != nil {
+		return nil
 	}
 
 	for _, c := range books {

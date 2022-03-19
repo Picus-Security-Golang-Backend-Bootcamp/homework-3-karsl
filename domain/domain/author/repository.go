@@ -1,6 +1,7 @@
 package author
 
 import (
+	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/infrastructure/data"
 	"gorm.io/gorm"
 )
 
@@ -25,7 +26,12 @@ func (r *AuthorRepository) Migration() error {
 
 // InsertSampleData reads data from author.csv and writes them to table author
 func (r *AuthorRepository) InsertSampleData() error {
-	authors, err := readFromCsv("author.csv")
+	lines, err := data.GetCellsFromCSV("author.csv")
+	if err != nil {
+		return err
+	}
+
+	authors, err := cellsToAuthors(lines)
 	if err != nil {
 		return err
 	}
