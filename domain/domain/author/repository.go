@@ -37,7 +37,9 @@ func (r *AuthorRepository) InsertSampleData() error {
 	}
 
 	for _, c := range authors {
-		r.db.Create(&c)
+		r.db.FirstOrCreate(&c, Author{
+			Model: gorm.Model{ID: c.ID},
+		})
 	}
 
 	return nil

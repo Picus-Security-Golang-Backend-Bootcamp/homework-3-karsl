@@ -39,7 +39,7 @@ func (r BookRepository) InsertSampleData() error {
 	}
 
 	for _, c := range books {
-		r.db.Create(&c)
+		r.db.FirstOrCreate(&c, Book{Name: c.Name})
 	}
 
 	return nil
