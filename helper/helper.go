@@ -6,6 +6,7 @@ import (
 	"math/big"
 )
 
+// GetRandomFloat64 generates random decimal
 func GetRandomFloat64(max, precision int) (float64, error) {
 	randInt, err := GetRandomInt64(int64(float64(max) * math.Pow10(precision)))
 	if err != nil {
@@ -15,6 +16,7 @@ func GetRandomFloat64(max, precision int) (float64, error) {
 	return float64(randInt) / math.Pow10(precision), nil
 }
 
+// GetRandomInt64 generates random integer
 func GetRandomInt64(max int64) (int64, error) {
 	nBig, err := rand.Int(rand.Reader, big.NewInt(max))
 	if err != nil {

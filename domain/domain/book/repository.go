@@ -33,7 +33,7 @@ func (r BookRepository) InsertSampleData() error {
 		return err
 	}
 
-	books, err := cellsToBook(lines)
+	books, err := linesToBook(lines)
 	if err != nil {
 		return nil
 	}

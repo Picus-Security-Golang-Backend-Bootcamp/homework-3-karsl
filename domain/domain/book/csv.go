@@ -4,7 +4,8 @@ import (
 	"strconv"
 )
 
-func cellToBook(line []string) (Book, error) {
+// lineToBook parses single line to Book
+func lineToBook(line []string) (Book, error) {
 	name := line[0]
 	stockCode := line[1]
 	authorId, err := strconv.Atoi(line[2])
@@ -20,10 +21,11 @@ func cellToBook(line []string) (Book, error) {
 	return data, nil
 }
 
-func cellsToBook(lines [][]string) ([]Book, error) {
+// linesToBook parses lines to Books
+func linesToBook(lines [][]string) ([]Book, error) {
 	var result []Book
 	for _, line := range lines[1:] {
-		data, err := cellToBook(line)
+		data, err := lineToBook(line)
 		if err != nil {
 			return nil, err
 		}

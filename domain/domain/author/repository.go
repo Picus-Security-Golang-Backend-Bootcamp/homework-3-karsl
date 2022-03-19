@@ -31,7 +31,7 @@ func (r *AuthorRepository) InsertSampleData() error {
 		return err
 	}
 
-	authors, err := cellsToAuthors(lines)
+	authors, err := linesToAuthors(lines)
 	if err != nil {
 		return err
 	}

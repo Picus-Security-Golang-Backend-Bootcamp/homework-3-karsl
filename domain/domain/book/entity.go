@@ -9,19 +9,19 @@ import (
 
 type Book struct {
 	gorm.Model
-	Name          string
-	StockCode     string
-	ISBN          int
-	NumberOfPages int
-	Price         float64
-	Quantity      int
-	AuthorID      int
+	Name          string  `gorm:"not null"`
+	StockCode     string  `gorm:"not null"`
+	ISBN          int     `gorm:"not null"`
+	NumberOfPages int     `gorm:"not null"`
+	Price         float64 `gorm:"not null"`
+	Quantity      int     `gorm:"not null;default:0"`
+	AuthorID      int     `gorm:"not null"`
 	Author        author.Author
 	gorm.DeletedAt
 }
 
 func (book Book) BeforeDelete(tx *gorm.DB) error {
-	fmt.Println("Deleting author: ", book.Name)
+	fmt.Println("Deleting book: ", book.Name)
 	return nil
 }
 

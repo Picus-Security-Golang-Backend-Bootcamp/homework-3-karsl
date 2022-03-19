@@ -8,8 +8,8 @@ import (
 
 type Author struct {
 	gorm.Model
-	Name      string
-	BirthDate time.Time
+	Name      string    `gorm:"not null"`
+	BirthDate time.Time `gorm:"not null"`
 }
 
 func (author Author) BeforeDelete(tx *gorm.DB) error {

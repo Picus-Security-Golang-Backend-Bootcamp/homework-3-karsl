@@ -7,7 +7,8 @@ import (
 	"time"
 )
 
-func cellToAuthor(line []string) (Author, error) {
+// lineToAuthor parses single line to Author
+func lineToAuthor(line []string) (Author, error) {
 	var birthDate = time.Now()
 
 	if line[2] != "" {
@@ -44,10 +45,11 @@ func cellToAuthor(line []string) (Author, error) {
 	return data, nil
 }
 
-func cellsToAuthors(lines [][]string) ([]Author, error) {
+// linesToAuthors parses lines to Authors
+func linesToAuthors(lines [][]string) ([]Author, error) {
 	var result []Author
 	for _, line := range lines[1:] {
-		data, err := cellToAuthor(line)
+		data, err := lineToAuthor(line)
 		if err != nil {
 			return nil, err
 		}
