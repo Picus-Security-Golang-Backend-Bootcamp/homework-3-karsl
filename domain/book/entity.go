@@ -17,7 +17,6 @@ type Book struct {
 	Quantity      int     `gorm:"not null;default:0"`
 	AuthorID      int     `gorm:"not null"`
 	Author        author.Author
-	gorm.DeletedAt
 }
 
 func (book Book) BeforeDelete(tx *gorm.DB) error {
