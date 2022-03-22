@@ -3,7 +3,7 @@ package book
 import (
 	"errors"
 	"fmt"
-	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/domain/domain/author"
+	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/domain/author"
 	"gorm.io/gorm"
 )
 

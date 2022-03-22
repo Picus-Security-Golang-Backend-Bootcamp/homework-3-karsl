@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/domain/domain/author"
-	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/domain/domain/book"
+	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/domain/author"
+	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/domain/book"
 	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/infrastructure/data"
 	"os"
 	"path"
