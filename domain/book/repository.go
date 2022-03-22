@@ -99,6 +99,10 @@ func (r BookRepository) List() []Book {
 
 // Buy find the book with given id and buys it.
 func (r BookRepository) Buy(bookId, quantity int) error {
+	if quantity <= 0 {
+		return errors.New("invalid quantity")
+	}
+
 	foundBook, err := r.findBookById(bookId)
 	if err != nil {
 		return err
