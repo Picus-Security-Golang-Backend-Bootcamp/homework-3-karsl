@@ -2,7 +2,6 @@ package book
 
 import (
 	"errors"
-	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/helper"
 	"github.com/Picus-Security-Golang-Backend-Bootcamp/homework-3-karsl/infrastructure/data"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
@@ -43,37 +42,6 @@ func (r BookRepository) InsertSampleData() error {
 	}
 
 	return nil
-}
-
-// Construct initializes a new Book whose ISBN, NumberOfPages, Price, Quantity fields generated randomly, isDeleted
-// property set to false, authorId increases incrementally.
-func Construct(name string, stockCode string, authorId int) (Book, error) {
-	isbn, err := helper.GetRandomInt64(100000000000)
-	if err != nil {
-		return Book{}, err
-	}
-	numberOfPages, err := helper.GetRandomInt64(2000)
-	if err != nil {
-		return Book{}, err
-	}
-	price, err := helper.GetRandomFloat64(1000, 2)
-	if err != nil {
-		return Book{}, err
-	}
-	quantity, err := helper.GetRandomInt64(2000)
-	if err != nil {
-		return Book{}, err
-	}
-
-	return Book{
-		Name:          name,
-		StockCode:     stockCode,
-		ISBN:          int(isbn),
-		NumberOfPages: int(numberOfPages),
-		Price:         price,
-		Quantity:      int(quantity),
-		AuthorID:      authorId,
-	}, nil
 }
 
 // Search returns all books that match with term in the bookshelf, by checking if it matches with given term by

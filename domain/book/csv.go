@@ -12,10 +12,31 @@ func lineToBook(line []string) (Book, error) {
 	if err != nil {
 		return Book{}, err
 	}
-
-	data, err := Construct(name, stockCode, authorId)
+	isbn, err := strconv.Atoi(line[3])
 	if err != nil {
 		return Book{}, err
+	}
+	numberOfPages, err := strconv.Atoi(line[4])
+	if err != nil {
+		return Book{}, err
+	}
+	price, err := strconv.ParseFloat(line[5], 64)
+	if err != nil {
+		return Book{}, err
+	}
+	quantity, err := strconv.Atoi(line[6])
+	if err != nil {
+		return Book{}, err
+	}
+
+	data := Book{
+		Name:          name,
+		StockCode:     stockCode,
+		ISBN:          isbn,
+		NumberOfPages: numberOfPages,
+		Price:         price,
+		Quantity:      quantity,
+		AuthorID:      authorId,
 	}
 
 	return data, nil

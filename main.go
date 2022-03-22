@@ -24,14 +24,20 @@ func init() {
 	if err != nil {
 		panic(err.Error())
 	}
-	authorRepository.InsertSampleData()
+	err = authorRepository.InsertSampleData()
+	if err != nil {
+		panic(err)
+	}
 
 	bookRepository = book.NewBookRepository(db)
 	err = bookRepository.Migration()
 	if err != nil {
 		panic(err.Error())
 	}
-	bookRepository.InsertSampleData()
+	err = bookRepository.InsertSampleData()
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
